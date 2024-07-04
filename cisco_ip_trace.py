@@ -46,14 +46,15 @@ access_vlan_regex = re.compile(r'switchport access vlan (\d*)', re.MULTILINE)
 
 # determine if arguments were passed to the script and parse if so
 if len(sys.argv) > 1:
-
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument('-n', action='store', dest='network_to_scan',
-                        help='The network to scan in CIDR format example 192.168.10.0/24', required=True)
-
-    parser.add_argument('-c', action='store', dest='core_switch',
-                        help='The IP address of the core switch to start the scan from', required=True)
+    # Add an indented block here to fix the error
+    pass
+    
+##########################################################################################################
+#
+#  get_cdp_neighbor - Checks for CDP Neighbor on switch port
+#
+##########################################################################################################
+def get_cdp_neighbor(next_switch_conn, mac_port):e core switch to start the scan from', required=True)
 
     parser.add_argument('-u', action='store', dest='username',
                         help='The username to connect with', required=True)
@@ -327,8 +328,7 @@ def trace_ip_address(ip):
     except:
         pass
     if not dns_name:
-        
-    print("\nTracing {}...".format(ip), end="")mat(ip), end=""
+        print("\nTracing {}...".format(ip), end="")
     # obtain MAC, port, and check CDP for neighbor on core
     # if using cmd line arguments
     if options:
