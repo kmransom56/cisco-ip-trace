@@ -282,10 +282,10 @@ def check_core(target_ip, core_router, username, password, secret, current_vrf):
     # obtain hostname of core device
     core_router_hostname = core_conn.find_prompt()
     match = re.search(r'^(.*?)#',core_router_hostname)
- if match:
-    core_router_hostname = match.group(1)
+    if match:
+        core_router_hostname = match.group(1)
     else:
-    core_router_hostname = ''
+        core_router_hostname = ''
     core_conn.enable()
     # ping IP and check ARP table for MAC
     core_conn.send_command("ping {} {} {} rep 2\n".format(vrf, current_vrf, target_ip), delay_factor=.1)
@@ -328,7 +328,7 @@ def trace_ip_address(ip):
         pass
     if not dns_name:
         
-    print("\nTracing {}...".format(ip), end="")mat(ip), end="")
+    print("\nTracing {}...".format(ip), end="")mat(ip), end=""
     # obtain MAC, port, and check CDP for neighbor on core
     # if using cmd line arguments
     if options:
