@@ -280,9 +280,12 @@ def check_core(target_ip, core_router, username, password, secret, current_vrf):
     core_conn = ConnectHandler(device_type='cisco_ios', host=core_router, username=username, password=password,
                                secret=secret)
     # obtain hostname of core device
-    core_router_hostname = core_conn.find_prompt().rstrip("#>")
-    if not core_router_hostname:
-        core_router_hostname = ''
+    core_router_hostname = core_conn.find_prompt()
+    match = re.search(r'^(.*?)#',core_router_hostname)
+ if match:
+    core_router_hostname = match.group(1)
+    else:
+    core_router_hostname = ''
     core_conn.enable()
     # ping IP and check ARP table for MAC
     core_conn.send_command("ping {} {} {} rep 2\n".format(vrf, current_vrf, target_ip), delay_factor=.1)
@@ -324,8 +327,8 @@ def trace_ip_address(ip):
     except:
         pass
     if not dns_name:
-        dns_name = "N/A"
-    print("\nTracing {}...".format(ip), end="")
+        
+    print("\nTracing {}...".format(ip), end="")mat(ip), end="")
     # obtain MAC, port, and check CDP for neighbor on core
     # if using cmd line arguments
     if options:
